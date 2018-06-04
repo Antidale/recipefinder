@@ -1,0 +1,22 @@
+<%= form_tag url_for(action: 'index'), method: 'get' do %>
+  <%= label_tag 'Search for '%>
+  <%= text_field_tag :search, @term %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+<table>
+  <tr>
+    <th>thumbnail</th>
+    <th>title</th>
+    <th>social rank</th>
+  </tr>
+  <% @recipes.each do |recipe| %>
+  <tr>
+    <td>
+      <%= link_to(image_tag(recipe["image_url"], size:"100x100"), recipe["f2f_url"]) %>
+      </td>
+    <td><%= link_to(sanitize(recipe["title"]), recipe["f2f_url"])%></td>
+    <td><%= recipe["social_rank"]%></td>
+  </tr>
+  <% end %>
+</table>
